@@ -23,11 +23,11 @@ console.log(path.join(__dirname, "client/build"));
 
 //register and login
 
-app.use("/auth", require("./server/routes/RoAuth"));
+app.use("/auth", require("./routes/RoAuth"));
 
 // dashboard
 
-app.use("/dashboard", require("./server/routes/dashboard"));
+app.use("/dashboard", require("./routes/dashboard"));
 
 app.listen(PORT, () => {
   console.log(`server port ${PORT}`);

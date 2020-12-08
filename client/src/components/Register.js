@@ -19,7 +19,7 @@ const Register = ({ setAuth }) => {
     e.preventDefault();
     try {
       const body = { email, password, name };
-      const response = await Axios("http://localhost:5000/auth/register", {
+      const response = await Axios("http://localhost:3000/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

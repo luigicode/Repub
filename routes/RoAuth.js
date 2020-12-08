@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const pool = require("../../db");
+const pool = require("../db");
 const bcrypt = require("bcrypt");
 const jwtGenerator = require("../utils/jwtGenerator");
 const validInfo = require("../middleware/validInfo");
@@ -80,7 +80,6 @@ router.post("/login", validInfo, async (req, res) => {
     const jwtToken = jwtGenerator(user.rows[0].user_id);
 
     res.json({ jwtToken });
-    //
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
@@ -88,7 +87,7 @@ router.post("/login", validInfo, async (req, res) => {
 });
 
 // verify token
-router.get("/is-verify", authorize, async (req, res) => {
+router.post("/is-verify", authorize, async (req, res) => {
   try {
     res.json(true);
   } catch (err) {

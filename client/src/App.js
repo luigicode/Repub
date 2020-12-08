@@ -25,7 +25,7 @@ toast.configure();
 function App() {
   const checkAuthenticated = async () => {
     try {
-      const res = await axios("http://localhost:5000/auth/is-verify", {
+      const res = await axios("http://localhost:3000/auth/is-verify", {
         method: "POST",
         headers: { jwt_token: localStorage.token },
       });

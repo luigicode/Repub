@@ -8,8 +8,6 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import { axios } from "axios";
-
 // import { xhr } from "xhr";
 
 import { toast } from "react-toastify";
@@ -25,7 +23,7 @@ toast.configure();
 function App() {
   const checkAuthenticated = async () => {
     try {
-      const res = await axios("http://localhost:3000/auth/is-verify", {
+      const res = await fetch("http://localhost:3000/auth/is-verify", {
         method: "POST",
         headers: { jwt_token: localStorage.token },
       });
@@ -34,7 +32,7 @@ function App() {
 
       parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
     } catch (err) {
-      console.error(err);
+      console.error(err.message);
       // console.warn(xhr.responseText);
     }
   };
@@ -42,6 +40,8 @@ function App() {
   useEffect(() => {
     checkAuthenticated();
   }, []);
+
+  console.log(checkAuthenticated);
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 

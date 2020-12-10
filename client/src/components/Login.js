@@ -17,8 +17,13 @@ const Login = ({ setAuth }) => {
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
+      //proxy is only use in development so it will be ignored in production
+      //so if there is no http://localhost:5000 then by default it is going to use heroku domain
+      //remember this heroku app is just our server serving the build static content and also holding the restful api
+
+      //https://pern-todo-app-demo.herokuapp.com/todos
       const body = { email, password };
-      const response = await fetch("http://localhost:3000/auth/login", {
+      const response = await fetch(`/auth/login`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",
